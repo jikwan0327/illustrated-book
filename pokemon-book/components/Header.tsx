@@ -23,7 +23,7 @@ const Header = () => {
   const Enter = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key == "Enter") {
       router.push(`/search`);
-      setSearchAtom(text);
+      setSearchAtom(e.target.value);
     }
   }, []);
 

@@ -53,6 +53,12 @@ const Card = styled.div`
   width: 200px;
   height: 40px;
   border-radius: 10px;
+  cursor: pointer;
+
+  &:hover {
+    scale: 1.1;
+    transition: 0.5s;
+  }
 `;
 
 const Name = styled.div<{ isActive: boolean }>`
