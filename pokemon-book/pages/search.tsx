@@ -5,10 +5,12 @@ import useSWR from "swr";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { isDarkAtom, search } from "../utils/atoms";
+import { useRouter } from "next/router";
 
 const BASEURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export default function Detail() {
+  const router = useRouter();
   const isDark = useRecoilValue(isDarkAtom);
   const earch = useRecoilValue(search);
   const [text, setText] = useState("");
@@ -20,6 +22,11 @@ export default function Detail() {
   const { data: name } = useSWR("/pokemon?offset=0&limit=905", fetcher);
   const pokemons = name?.results;
 
+  const onClick = (name: string) => {
+    router.push(`/pokemons/${name}`);
+    console.log(name);
+  };
+
   return (
     <>
       <Seo name="pokemon" />
@@ -27,7 +34,7 @@ export default function Detail() {
         {pokemons
           ?.filter((word) => word.name.includes(earch))
           .map((pokemon) => (
-            <Card key={pokemon.name}>
+            <Card onClick={() => onClick(pokemon?.name)} key={pokemon.name}>
               <Name isActive={isDark}>{pokemon.name}</Name>
             </Card>
           ))}
