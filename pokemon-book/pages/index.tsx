@@ -27,7 +27,7 @@ export default function Home(props) {
     <>
       <Seo name="pokemon" />
       <Cards isActive={isDark}>
-        {pokemons.map((pokemon, index) => (
+        {pokemons?.map((pokemon, index) => (
           <Card
             key={pokemon.name}
             image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
